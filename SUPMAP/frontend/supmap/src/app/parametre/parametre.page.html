@@ -1,0 +1,80 @@
+<ion-app>
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/apres-connexion/tab1"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Paramètres</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="ion-padding">
+
+    <!-- Délier compte si Google ou Facebook -->
+    <div *ngIf="loginMethod === 'google' || loginMethod === 'facebook'">
+      <ion-button expand="full" color="danger" (click)="unlink()">
+        🔓 Délier mon compte {{ loginMethod }}
+      </ion-button>
+    </div>
+
+    <!-- Sinon : formulaire classique -->
+    <div *ngIf="loginMethod !== 'google' && loginMethod !== 'facebook'">
+      <ion-list>
+        <!-- Infos personnelles -->
+        <ion-item>
+          <ion-label position="floating">Nom</ion-label>
+          <ion-input [(ngModel)]="user.username"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Telephone</ion-label>
+          <ion-input [(ngModel)]="user.telephone"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input [(ngModel)]="user.email" type="email"></ion-input>
+        </ion-item>
+
+        <!-- Changer le mot de passe -->
+        <ion-item>
+          <ion-label position="floating">Ancien mot de passe</ion-label>
+          <ion-input [(ngModel)]="oldPassword" type="password"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Nouveau mot de passe</ion-label>
+          <ion-input [(ngModel)]="newPassword" type="password"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Confirmer le mot de passe</ion-label>
+          <ion-input [(ngModel)]="confirmPassword" type="password"></ion-input>
+        </ion-item>
+
+        <ion-button expand="full" (click)="updateProfile()">Mettre à jour</ion-button>
+      </ion-list>
+    </div>
+
+    <!-- Mode clair -->
+    <div *ngIf="loginMethod !== 'google' && loginMethod !== 'facebook'">
+      <ion-list>
+        <ion-item>
+          <ion-label>Mode Clair</ion-label>
+          <ion-toggle [(ngModel)]="isLightMode" (ionChange)="toggleLightMode()"></ion-toggle>
+        </ion-item>
+      </ion-list>
+
+      <ion-list>
+        <ion-item button color="warning" (click)="deactivateAccount()">
+          <ion-icon name="pause-circle-outline" slot="start"></ion-icon>
+          <ion-label>Désactiver mon compte</ion-label>
+        </ion-item>
+
+        <ion-item button color="danger" (click)="deleteAccount()">
+          <ion-icon name="trash-outline" slot="start"></ion-icon>
+          <ion-label>Supprimer mon compte</ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+</ion-content>
+</ion-app>
+

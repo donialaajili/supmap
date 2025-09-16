@@ -1,0 +1,37 @@
+<ion-app>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/apres-connexion/tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Mes Signalements</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Liste des incidents si mesIncidents contient des données -->
+  <ion-list *ngIf="mesIncidents && mesIncidents.length > 0; else noData">
+    <ion-item *ngFor="let incident of mesIncidents">
+      <ion-label>
+        <h2>{{ incident.type }}</h2>
+        <p>{{ incident.description }}</p>
+        <p><strong>Statut :</strong> {{ incident.status }}</p>
+      </ion-label>
+      <ion-button slot="end" color="danger" (click)="confirmerSuppression(incident.id)">Supprimer</ion-button>
+      <ion-button slot="end" color="primary" (click)="modifierIncident(incident)">Modifier</ion-button>
+    </ion-item>
+  </ion-list>
+
+  <!-- Template à afficher si mesIncidents est vide -->
+  <ng-template #noData>
+    <ion-text color="medium">
+      <p>Aucun signalement trouvé.</p>
+    </ion-text>
+  </ng-template>
+</ion-content>
+</ion-app>
+
+
+
+
+

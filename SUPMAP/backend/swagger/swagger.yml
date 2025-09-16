@@ -1,0 +1,254 @@
+/**
+ * @swagger
+ * tags:
+ *   name: Utilisateurs
+ *   description: Gestion du profil utilisateur et administration
+ */
+
+/**
+ * @swagger
+ * /users/me:
+ *   get:
+ *     summary: Obtenir les informations du profil connecté
+ *     tags: [Utilisateurs]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Données utilisateur
+ *       401:
+ *         description: Non autorisé
+ */
+
+
+/**
+ * @swagger
+ * /users/me:
+ *   patch:
+ *     summary: Modifier les informations du profil
+ *     tags: [Utilisateurs]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 example: johnUpdated
+ *               telephone:
+ *                 type: string
+ *                 example: "+33612345678"
+ *     responses:
+ *       200:
+ *         description: Profil mis à jour
+ *       400:
+ *         description: Données invalides
+ *       401:
+ *         description: Non autorisé
+ */
+
+
+
+
+/**
+ * @swagger
+ * /users/change-password:
+ *   patch:
+ *     summary: Modifier le mot de passe
+ *     tags: [Utilisateurs]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [oldPassword, newPassword]
+ *             properties:
+ *               oldPassword:
+ *                 type: string
+ *                 example: Azerty123!
+ *               newPassword:
+ *                 type: string
+ *                 example: NewPass456@
+ *     responses:
+ *       200:
+ *         description: Mot de passe modifié
+ *       400:
+ *         description: Ancien mot de passe incorrect ou invalide
+ */
+
+
+
+
+
+/**
+ * @swagger
+ * /users/deactivate-account:
+ *   patch:
+ *     summary: Désactiver son compte (soft delete)
+ *     tags: [Utilisateurs]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Compte désactivé
+ *       401:
+ *         description: Non autorisé
+ */
+
+
+
+
+/**
+ * @swagger
+ * /users/delete-account:
+ *   delete:
+ *     summary: Supprimer définitivement son compte
+ *     tags: [Utilisateurs]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Compte supprimé
+ *       401:
+ *         description: Non autorisé
+ */
+
+
+/**
+ * @swagger
+ * /users/admin:
+ *   get:
+ *     summary: Obtenir la liste de tous les utilisateurs (admin uniquement)
+ *     tags: [Utilisateurs]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Liste des utilisateurs
+ *       403:
+ *         description: Accès refusé
+ */
+
+
+/**
+ * @swagger
+ * tags:
+ *   name: Users
+ *   description: Gestion des utilisateurs et système d'amitié
+ */
+
+/**
+ * @swagger
+ * /users/friends:
+ *   get:
+ *     summary: Obtenir la liste de ses amis
+ *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Liste des amis
+ */
+
+/**
+ * @swagger
+ * /users/friend-requests:
+ *   get:
+ *     summary: Obtenir les demandes d'amis en attente
+ *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Liste des demandes d’amis reçues
+ */
+
+/**
+ * @swagger
+ * /users/friend-request/{targetId}:
+ *   post:
+ *     summary: Envoyer une demande d’ami
+ *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: targetId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID de l’utilisateur cible
+ *     responses:
+ *       200:
+ *         description: Demande d’ami envoyée
+ *       400:
+ *         description: Déjà demandé
+ *       404:
+ *         description: Utilisateur introuvable
+ */
+
+/**
+ * @swagger
+ * /users/friend-request/{targetId}/accept:
+ *   post:
+ *     summary: Accepter une demande d’ami
+ *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: targetId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID de l’utilisateur qui a envoyé la demande
+ *     responses:
+ *       200:
+ *         description: Ami ajouté
+ *       400:
+ *         description: Aucune demande trouvée
+ *       404:
+ *         description: Utilisateur introuvable
+ */
+
+/**
+ * @swagger
+ * /users/friend/{targetId}:
+ *   delete:
+ *     summary: Supprimer un ami
+ *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: targetId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID de l’ami à retirer
+ *     responses:
+ *       200:
+ *         description: Ami retiré
+ *       404:
+ *         description: Utilisateur introuvable
+ */
+
+
+/**
+ * @swagger
+ * /users/suggestions-facebook:
+ *   get:
+ *     summary: Voir les suggestions d’amis Facebook présents sur l’appli
+ *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Liste des suggestions d’amis
+ */

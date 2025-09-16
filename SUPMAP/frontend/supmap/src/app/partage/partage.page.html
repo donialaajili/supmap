@@ -1,0 +1,56 @@
+<ion-app>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/apres-connexion/tab1"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Partage d'itinéraire</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="ion-padding">
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Partager votre position</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-button expand="full" (click)="getPosition()">Obtenir ma position</ion-button>
+
+        <div *ngIf="partageLink">
+          <p>Lien de partage :</p>
+          <ion-input readonly [value]="partageLink"></ion-input>
+          <ion-button expand="full" (click)="copyLink()">Copier le lien</ion-button>
+          <ion-button expand="full" (click)="generateQRCode()">Afficher le QR Code</ion-button>
+        </div>
+
+        <!-- QR Code -->
+        <div *ngIf="showQR" style="margin-top: 20px; text-align: center;">
+          <qrcode [qrdata]="qrData" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+          <p>{{ qrData }}</p>
+        </div>
+
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Partager avec un ami</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-select placeholder="Sélectionner un ami" [(ngModel)]="amiSelectionne">
+          <ion-select-option *ngFor="let ami of amis" [value]="ami">{{ ami }}</ion-select-option>
+        </ion-select>
+
+        <ion-button expand="full" (click)="startSharingWithFriend()" [disabled]="!amiSelectionne">
+          Partager avec {{ amiSelectionne }}
+        </ion-button>
+
+        <ion-button color="danger" expand="full" (click)="stopSharing()" *ngIf="isSharingWithFriend">
+          Arrêter le partage
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+
+  </ion-content>
+</ion-app>

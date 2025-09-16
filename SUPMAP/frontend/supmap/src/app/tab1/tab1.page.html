@@ -1,0 +1,69 @@
+<ion-app>
+  <!-- Menu latéral -->
+  <ion-menu contentId="main-content">
+    <ion-header>
+      <ion-toolbar color="tertiary">
+        <ion-title>SUPMAP</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-button expand="full" color="primary" routerLink="/connexion">
+        Connexion
+      </ion-button>
+      <ion-button expand="full" color="secondary" routerLink="/inscription">
+        Inscription
+      </ion-button>
+      <ion-button expand="full" color="secondary" routerLink="/tabs/tab1">
+        Accueil
+      </ion-button>
+    </ion-content>
+  </ion-menu>
+
+  <!-- Page principale -->
+  <div class="ion-page" id="main-content">
+    <!-- Header -->
+    <ion-header [translucent]="true">
+      <ion-toolbar>
+        <!-- Bouton pour ouvrir le menu -->
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Itinéraire</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <!-- Contenu principal - une seule ion-content -->
+    <ion-content [fullscreen]="true">
+      <ion-header collapse="condense">
+        <ion-toolbar>
+          <ion-title size="large">Itinéraire</ion-title>
+        </ion-toolbar>
+      </ion-header>
+
+      <!-- Map container -->
+      <div class="maps-container">
+        <div id="map"></div>
+
+        <!-- Form container -->
+        <div class="welcome-container">
+          <h2>Bienvenue à SUPMAP</h2>
+          <p>
+            SUPMAP est votre compagnon de navigation intelligent. Trouvez le meilleur itinéraire, évitez les embouteillages, signalez les incidents en temps réel et découvrez les chemins les plus rapides vers votre destination.
+          </p>
+          <p>
+            ✅ Calcul d’itinéraire<br>
+            🚗 Suivi du trafic en temps réel<br>
+            ⚠️ Signalement d’incidents<br>
+            📍 Suggestions de villes et géolocalisation
+          </p>
+          <ion-button expand="block" color="primary" routerLink="/connexion">
+            Commencer
+          </ion-button>
+        </div>
+      </div>
+    </ion-content>
+  </div>
+</ion-app>
+
+
+

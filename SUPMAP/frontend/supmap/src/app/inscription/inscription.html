@@ -1,0 +1,71 @@
+<ion-app>
+  <!-- Menu latéral -->
+  <ion-menu contentId="main-content">
+    <ion-header>
+      <ion-toolbar color="tertiary">
+        <ion-title>SUPMAP</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-button expand="full" color="primary" routerLink="/connexion">
+        Connexion
+      </ion-button>
+      <ion-button expand="full" color="secondary" routerLink="/inscription">
+        Inscription
+      </ion-button>
+      <ion-button expand="full" color="secondary" routerLink="/tabs/tab1">
+        Accueil
+      </ion-button>
+    </ion-content>
+  </ion-menu>
+
+  <!-- Conteneur principal -->
+  <div class="ion-page" id="main-content">
+    <!-- En-tête de la page -->
+    <ion-header [translucent]="true">
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Inscription</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <!-- Contenu de la page -->
+    <ion-content [fullscreen]="true">
+      <div class="form-container">
+        <h2>Créez un compte</h2>
+        <form (submit)="register($event)">
+          <ion-item>
+            <ion-label position="floating">Nom</ion-label>
+            <ion-input type="text" [(ngModel)]="username" name="username" required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input type="email" [(ngModel)]="email" name="email" required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Mot de passe</ion-label>
+            <ion-input type="password" [(ngModel)]="password" name="password" required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">numero de telephone</ion-label>
+          <ion-input type="tel" [(ngModel)]="telephone" name="telephone" required></ion-input>
+
+          </ion-item>
+
+          <ion-button expand="block" type="submit" color="secondary">S'inscrire</ion-button>
+        </form>
+        <p>
+          Déjà un compte ? <a routerLink="/connexion">Connectez-vous</a>
+        </p>
+      </div>
+    </ion-content>
+  </div>
+</ion-app>
+
+
+

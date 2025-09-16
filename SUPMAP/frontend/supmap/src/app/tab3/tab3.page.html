@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Aide
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <div class="aide-container">
+    <h2>Besoin d'aide ?</h2>
+    <p>Nous sommes là pour vous aider ! Consultez les options ci-dessous ou contactez notre support.</p>
+
+    <ion-list>
+      <ion-item button routerLink="/faq">
+        <ion-icon slot="start" name="help-circle-outline"></ion-icon>
+        FAQ - Questions fréquentes
+      </ion-item>
+      <ion-item button routerLink="/contact">
+        <ion-icon slot="start" name="call-outline"></ion-icon>
+        Contacter le support
+      </ion-item>
+      <ion-item button routerLink="/guides">
+        <ion-icon slot="start" name="book-outline"></ion-icon>
+        Guides d'utilisation
+      </ion-item>
+      <ion-item button routerLink="/feedback">
+        <ion-icon slot="start" name="chatbubble-outline"></ion-icon>
+        Donner un retour
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

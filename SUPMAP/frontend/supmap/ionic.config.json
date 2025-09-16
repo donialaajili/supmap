@@ -1,0 +1,7 @@
+{
+  "name": "SUPMAP",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

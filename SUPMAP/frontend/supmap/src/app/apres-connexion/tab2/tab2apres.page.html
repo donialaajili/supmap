@@ -1,0 +1,53 @@
+<ion-app>
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-title>Incident et trafic</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content [fullscreen]="true">
+    <ion-header collapse="condense">
+      <ion-toolbar>
+        <ion-title size="large">Trafic</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <div class="trafic-container">
+      <h2>Conditions de trafic en temps réel</h2>
+
+      <div class="traffic-info">
+        <ng-container *ngIf="traffics.length > 0; else noTraffic">
+          <div *ngFor="let traffic of traffics">
+            <p><strong>{{ traffic.route }} :</strong> {{ traffic.status }}</p>
+            <p>Vitesse : {{ traffic.speed }} km/h</p>
+            <p>Vitesse normale : {{ traffic.freeFlowSpeed }} km/h</p>
+            <p>Facteur d'encombrement : {{ traffic.jamFactor }}</p>
+            <hr />
+          </div>
+        </ng-container>
+        <ng-template #noTraffic>
+          <p>Aucune donnée de trafic disponible.</p>
+        </ng-template>
+      </div>
+
+      <h2>Incidents proches de vous</h2>
+
+      <div class="incidents-info">
+        <ng-container *ngIf="incidents.length > 0; else noIncident">
+          <div *ngFor="let incident of incidents">
+            <p><strong>Type :</strong> {{ incident.type || 'Inconnu' }}</p>
+            <p><strong>Distance :</strong> {{ incident.distanceMeters | number: '1.0-0' }} mètres</p>
+            <p *ngIf="incident.delay"><strong>Délai estimé :</strong> {{ incident.delay }}</p>
+            <hr />
+          </div>
+        </ng-container>
+        <ng-template #noIncident>
+          <p>Aucun incident trouvé autour de vous.</p>
+        </ng-template>
+      </div>
+
+      <ion-button expand="block" color="secondary" (click)="refresh()">Actualiser</ion-button>
+    </div>
+  </ion-content>
+</ion-app>
+

@@ -1,0 +1,30 @@
+.aide-container {
+  padding: 16px;
+
+  h2 {
+    margin-bottom: 16px;
+    text-align: center;
+    color: #123456;
+  }
+
+  p {
+    margin-bottom: 24px;
+    font-size: 14px;
+    text-align: center;
+    color: #666;
+  }
+
+  ion-list {
+    ion-item {
+      --background: #100f0f;
+      --border-color: #ddd;
+      border-radius: 8px;
+      margin-bottom: 12px;
+
+      ion-icon {
+        color: #3880ff;
+        font-size: 20px;
+      }
+    }
+  }
+}

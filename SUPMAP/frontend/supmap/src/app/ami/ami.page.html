@@ -1,0 +1,101 @@
+<ion-app>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/apres-connexion/tab1"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Gestion des Amis</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <div class="ion-padding">
+
+      <!-- 🔍 Barre de recherche -->
+      <ion-item>
+        <ion-input [(ngModel)]="rechercheAmi" placeholder="Rechercher un utilisateur..."></ion-input>
+        <ion-button (click)="rechercherAmi()">Rechercher</ion-button>
+      </ion-item>
+
+      <!-- 🔎 Résultats de recherche -->
+      <ion-list *ngIf="resultatsRecherche.length > 0">
+        <ion-list-header>
+          Résultats de la recherche :
+        </ion-list-header>
+        <ion-item *ngFor="let utilisateur of resultatsRecherche">
+          <ion-label>{{ utilisateur.username }}</ion-label>
+          <ion-button (click)="ajouterAmiDepuisRecherche(utilisateur.username)">
+            Ajouter
+          </ion-button>
+        </ion-item>
+      </ion-list>
+
+      <ion-item-divider></ion-item-divider>
+
+      <!-- 📥 Demandes d'amis reçues -->
+      <ion-list *ngIf="demandes.length > 0">
+        <ion-list-header>
+          Demandes reçues
+        </ion-list-header>
+        <ion-item *ngFor="let demande of demandes">
+          <ion-label>
+            <h2>{{ demande.username }}</h2>
+            <p>{{ demande.email }}</p>
+          </ion-label>
+          <ion-button fill="outline" color="success" (click)="acceptDemande(demande)">
+            Accepter
+          </ion-button>
+          <ion-button fill="outline" color="danger" (click)="refuserDemande(demande)">
+            Refuser
+          </ion-button>
+        </ion-item>
+      </ion-list>
+
+      <ion-item-divider></ion-item-divider>
+
+      <!-- 👥 Liste des amis -->
+      <ion-list>
+        <ion-list-header>
+          Vos amis
+        </ion-list-header>
+        <ion-item *ngFor="let ami of amis">
+          <ion-label>
+            <h2>{{ ami.username }}</h2>
+            <p>{{ ami.email }}</p>
+          </ion-label>
+
+          <ion-button
+            fill="outline"
+            slot="end"
+            [color]="ami.isBlocked ? 'success' : 'warning'"
+            (click)="toggleBlocage(ami)">
+            {{ ami.isBlocked ? 'Débloquer' : 'Bloquer' }}
+          </ion-button>
+
+          <ion-button fill="outline" slot="end" color="danger" (click)="supprimerAmi(ami)">
+            Supprimer
+          </ion-button>
+        </ion-item>
+      </ion-list>
+
+      <ion-item-divider></ion-item-divider>
+
+      <!-- 🚫 Utilisateurs bloqués -->
+      <ion-list *ngIf="blocages.length > 0">
+        <ion-list-header>
+          Utilisateurs bloqués
+        </ion-list-header>
+        <ion-item *ngFor="let user of blocages">
+          <ion-label>
+            <h2>{{ user.username }}</h2>
+            <p>{{ user.email }}</p>
+          </ion-label>
+          <ion-button fill="outline" color="medium" (click)="toggleBlocage(user)">
+            Débloquer
+          </ion-button>
+        </ion-item>
+      </ion-list>
+
+    </div>
+  </ion-content>
+</ion-app>

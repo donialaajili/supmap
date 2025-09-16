@@ -1,0 +1,65 @@
+ion-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Hauteur complète de la fenêtre */
+  overflow: hidden;
+}
+
+ion-header {
+  ion-toolbar {
+    --background: #0f48ab; /* Couleur bleue pour le header */
+    --color: #ffffff; /* Texte blanc dans le header */
+  }
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 20px;
+  background-color: #0b1930;
+
+
+
+  h2 {
+    margin-bottom: 20px;
+    color: #3880ff;
+  }
+
+  form {
+    width: 100%;
+    max-width: 400px;
+
+    ion-item {
+      margin-bottom: 20px; /* Espacement entre les champs */
+      --highlight-background: transparent; /* Supprime le cadre noir autour des champs */
+      --background: transparent; /* Fond transparent des champs */
+    }
+  }
+
+  ion-button[type="submit"] {
+    margin-top: 20px; /* Espacement entre les champs et le bouton */
+  }
+
+  .social-login {
+    margin-top: 30px;
+
+    ion-button {
+      margin-bottom: 10px;
+    }
+  }
+
+  p {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+
+    a {
+      color: #3880ff;
+      text-decoration: none;
+    }
+  }
+}

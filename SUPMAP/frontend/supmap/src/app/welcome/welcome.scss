@@ -1,0 +1,63 @@
+ion-content {
+  --background: linear-gradient(to bottom, #123456, #345678); /* Couleur de fond dégradée */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Hauteur complète de la fenêtre */
+  overflow: hidden;
+}
+
+.welcome-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  padding: 20px;
+  color: #ffffff; /* Texte blanc */
+}
+
+.welcome-message h1 {
+  font-size: 2.5rem; /* Taille du titre */
+  margin-bottom: 10px;
+}
+
+.welcome-message p {
+  font-size: 1.2rem; /* Taille du texte */
+  margin-bottom: 20px;
+  opacity: 0.8; /* Légèrement transparent */
+}
+
+.start-button {
+  /* Couleur du bouton */
+  --color: #ffffff; /* Couleur du texte du bouton */
+  font-size: 1.2rem;
+  border-radius: 20px;
+  padding: 10px 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out;
+}
+
+.fade-in {
+  opacity: 0.2; /* Commence invisible */
+  animation: fadeInAnimation 1s ease-in forwards; /* Animation sur 2 secondes */
+}
+
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0.8;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+.start-button:hover {
+  transform: scale(1.05); /* Léger agrandissement au survol */
+}
+
+.start-button:active {
+  transform: scale(0.95); /* Réduction légère à l'interaction */
+}

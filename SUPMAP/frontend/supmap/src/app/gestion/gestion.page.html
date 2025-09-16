@@ -1,0 +1,40 @@
+<ion-app>
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/apres-connexion/tab1"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Gestion des Itinéraires</ion-title>
+      <ion-buttons slot="end">
+
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="ion-padding">
+    <!-- Liste des itinéraires -->
+    <ion-list *ngIf="itineraries.length > 0">
+      <ion-item *ngFor="let itinerary of itineraries" (click)="viewItinerary(itinerary)">
+        <ion-label>
+          <h2>{{ itinerary.name }}</h2>
+          <!--<p>De : {{ itinerary.start }} ➝ {{ itinerary.end }}</p>-->
+        </ion-label>
+        <ion-buttons slot="end">
+         
+          <ion-button fill="clear" color="danger" (click)="deleteItinerary(itinerary.id, $event)">
+            <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+    </ion-list>
+
+    <!-- Alerte si vide -->
+    <div *ngIf="itineraries.length === 0" class="empty-state ion-text-center">
+      <ion-icon name="map-outline" class="empty-icon" size="large"></ion-icon>
+      <p>Aucun itinéraire enregistré.</p>
+      <ion-button expand="block" (click)="openAddItineraryModal()">
+        Ajouter un itinéraire
+      </ion-button>
+    </div>
+  </ion-content>
+</ion-app>

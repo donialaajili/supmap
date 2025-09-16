@@ -1,0 +1,79 @@
+<ion-app>
+  <!-- Menu latéral -->
+  <ion-menu contentId="main-content">
+    <ion-header>
+      <ion-toolbar color="tertiary">
+        <ion-title>SUPMAP</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-button expand="full" color="primary" routerLink="/connexion">
+          Connexion
+          </ion-button>
+          <ion-button expand="full" color="secondary" routerLink="/inscription">
+            Inscription
+          </ion-button>
+          <ion-button expand="full" color="secondary" routerLink="/tabs/tab1">
+            Accueil
+          </ion-button>
+          </ion-list>
+          </ion-content>
+          </ion-menu>
+
+  <!-- Conteneur principal -->
+  <div class="ion-page" id="main-content">
+    <ion-header [translucent]="true">
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Connexion</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content [fullscreen]="true">
+      <div class="form-container">
+        <h2>Connectez-vous</h2>
+        <form (submit)="login($event)">
+          <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input type="email" [(ngModel)]="email" name="email" required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Mot de passe</ion-label>
+            <ion-input type="password" [(ngModel)]="password" name="password" required></ion-input>
+          </ion-item>
+
+          <!-- Message d'erreur -->
+          <p *ngIf="errorMessage" class="error-text">{{ errorMessage }}</p>
+
+          <ion-button expand="block" type="submit" color="primary">Se connecter</ion-button>
+        </form>
+
+        <div class="social-login">
+          <ion-button expand="block" color="danger" (click)="loginWithGoogle()">
+            <ion-icon name="logo-google" slot="start"></ion-icon>
+            Connexion avec Google
+          </ion-button>
+          <ion-button expand="block" color="primary" (click)="loginWithFacebook()">
+            <ion-icon name="logo-facebook" slot="start"></ion-icon>
+            Connexion avec Facebook
+          </ion-button>
+        </div>
+
+        <p>
+          Pas encore de compte ?
+          <a routerLink="/inscription">Inscrivez-vous</a>
+        </p>
+      </div>
+    </ion-content>
+  </div>
+</ion-app>
+
+
+
+
+
+

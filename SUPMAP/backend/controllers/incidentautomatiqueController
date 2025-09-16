@@ -1,0 +1,51 @@
+const geolib = require('geolib');
+
+// Nouvelle fonction pour récupérer les incidents autour de l'IP du serveur
+exports.getIncidentsAroundIP = async (req, res) => {
+  try {
+    // 1. Récupérer position par IP
+    const ipResponse = await axios.get('http://ip-api.com/json');
+    const { lat, lon } = ipResponse.data;
+
+    // 2. Récupérer incidents TomTom
+    const radius = 10000; // 10 km
+    const tomtomResponse = await axios.get(`https://api.tomtom.com/traffic/services/5/incidents`, {
+      params: {
+        key: process.env.TOMTOM_API_KEY, // Utiliser la clé depuis le .env
+        point: `${lat},${lon}`,
+        radius: radius,
+        language: 'fr-FR',
+        fields: '{incidents{geometry,type,delay,length,events}}'
+      }
+    });
+
+    const incidents = tomtomResponse.data.incidents || [];
+
+    // 3. Ajouter la distance par rapport à la position IP
+    const enrichedIncidents = incidents.map(incident => {
+      const incidentCoords = incident.geometry?.coordinates[0] || {};
+      const distance = geolib.getDistance(
+        { latitude: lat, longitude: lon },
+        { latitude: incidentCoords.latitude, longitude: incidentCoords.longitude }
+      );
+
+      return {
+        ...incident,
+        distanceMeters: distance
+      };
+    });
+
+    // 4. Trier les incidents par distance
+    enrichedIncidents.sort((a, b) => a.distanceMeters - b.distanceMeters);
+
+    // 5. Répondre
+    res.status(200).json({ 
+      position: { lat, lon },
+      incidents: enrichedIncidents 
+    });
+
+  } catch (error) {
+    console.error('Erreur lors de la détection par IP', error);
+    res.status(500).json({ error: 'Erreur serveur lors de la récupération des incidents proches de l\'IP' });
+  }
+};

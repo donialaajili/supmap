@@ -1,0 +1,72 @@
+<!-- Conteneur principal -->
+<div class="ion-page" id="main-content">
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Vérification e-mail</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content [fullscreen]="true">
+    <div class="form-container ion-padding">
+      <h2 class="ion-text-center">Vérifiez votre adresse e-mail</h2>
+      <p class="ion-text-center">
+        Un code vous a été envoyé à <strong>{{ email }}</strong><br />
+        Entrez ce code pour activer votre compte.
+      </p>
+
+      <form (submit)="verify()" class="ion-margin-top">
+        <ion-item>
+          <ion-label position="floating">Code de vérification</ion-label>
+          <ion-input
+            type="text"
+            maxlength="6"
+            [(ngModel)]="code"
+            name="code"
+            inputmode="numeric"
+            required
+          ></ion-input>
+        </ion-item>
+
+        <ion-button
+          expand="block"
+          type="submit"
+          color="secondary"
+          class="ion-margin-top"
+          [disabled]="!code || isLoading"
+        >
+          Vérifier
+        </ion-button>
+      </form>
+
+      <ion-item *ngIf="!email" class="ion-margin-top">
+        <ion-label position="floating">Adresse E-mail</ion-label>
+        <ion-input
+          type="email"
+          [(ngModel)]="email"
+          name="email"
+          required
+        ></ion-input>
+      </ion-item>
+
+      <ion-button
+        fill="clear"
+        (click)="resendCode()"
+        [disabled]="isLoading"
+        class="ion-margin-top"
+      >
+        Renvoyer le code
+      </ion-button>
+
+      <ion-text color="success" *ngIf="message">
+        <p class="ion-padding-top ion-text-center">{{ message }}</p>
+      </ion-text>
+
+      <ion-text color="danger" *ngIf="error">
+        <p class="ion-padding-top ion-text-center">{{ error }}</p>
+      </ion-text>
+    </div>
+  </ion-content>
+</div>

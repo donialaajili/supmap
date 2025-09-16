@@ -1,0 +1,57 @@
+<ion-app>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/apres-connexion/tab1"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Validation des Signalements</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <ion-item *ngFor="let alerte of alertes">
+        <ion-label>
+          <h2>{{ alerte.type }}</h2>
+          <p>{{ alerte.description }}</p>
+          <p>📍 Position: {{ alerte.position[0] }}, {{ alerte.position[1] }}</p>
+          <p>✅ Confirmé par {{ alerte.confirmedCount }} utilisateurs</p>
+          <p>❌ Rejeté par {{ alerte.rejectedCount }} utilisateurs</p>
+           <!-- Affichage du statut -->
+    <p>Status:
+      <span *ngIf="alerte.status === 'terminé'">✅ Terminé</span>
+      <span *ngIf="alerte.status === 'en cours'">⏳ En cours</span>
+      <span *ngIf="alerte.status === 'réglé'">❌ Rejeté</span>
+    </p>
+
+
+    <p *ngIf="alerte.distance">📏 Distance: {{ alerte.distance | number:'1.1-2' }} km</p>
+
+        </ion-label>
+
+        <ion-buttons slot="end">
+          <ion-button
+            color="success"
+            (click)="confirmIncident(alerte.id)"
+            [disabled]="alerte.userVote !== null">
+            ✅
+          </ion-button>
+
+          <ion-button
+            color="danger"
+            (click)="rejectIncident(alerte.id)"
+            [disabled]="alerte.userVote !== null">
+            ❌
+          </ion-button>
+
+          <ion-button color="medium" (click)="voirDetails(alerte)">
+            👁️
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-app>
+
+
+

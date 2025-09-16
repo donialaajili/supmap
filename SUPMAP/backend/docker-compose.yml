@@ -1,0 +1,14 @@
+version: '3.8'  # Version de Docker Compose
+
+services:
+  mongo:
+    image: mongo:6.0  # Version MongoDB
+    container_name: mongodb
+    ports:
+      - "27017:27017"  # Expose MongoDB sur localhost:27017
+    volumes:
+      - mongo_data:/data/db  # Sauvegarde les données
+    restart: always  # Redémarre automatiquement en cas d'échec
+
+volumes:
+  mongo_data:

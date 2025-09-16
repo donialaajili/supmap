@@ -1,0 +1,28 @@
+.trafic-container {
+  padding: 16px;
+  text-align: center;
+
+  h2 {
+    margin-bottom: 16px;
+    color: #123456;
+  }
+
+  .traffic-info {
+    margin-bottom: 20px;
+    text-align: left;
+    font-size: 14px;
+
+    p {
+      margin-bottom: 8px;
+      color: #444;
+    }
+
+    strong {
+      color: #000;
+    }
+  }
+
+  ion-button {
+    margin-top: 20px;
+  }
+}

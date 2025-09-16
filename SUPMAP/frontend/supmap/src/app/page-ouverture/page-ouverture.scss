@@ -1,0 +1,24 @@
+ion-content {
+  --background: #0746a4; /* Couleur de fond de la page */
+  display: flex;
+  justify-content: center; /* Centre horizontalement */
+  align-items: center; /* Centre verticalement */
+  height: 100vh; /* Hauteur complète de la fenêtre */
+  overflow: hidden; /* Empêche le défilement */
+}
+
+.splash-container {
+  display: flex;
+  justify-content: center; /* Centre horizontalement */
+  align-items: center; /* Centre verticalement */
+  width: 100%; /* Assure la largeur complète */
+  height: 100%; /* Assure que le conteneur occupe toute la hauteur */
+}
+
+.logo {
+  max-width: 90%; /* Réduit automatiquement si l'image est trop large */
+  max-height: 90%; /* Empêche l'image d'occuper toute la hauteur */
+  height: auto; /* Conserve le ratio d'aspect */
+}
+
+

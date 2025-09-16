@@ -1,0 +1,65 @@
+@import "leaflet/dist/leaflet.css";
+
+#map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; // Met la carte en arrière-plan
+}
+
+ion-content {
+  background: transparent; // Assure que la carte est visible derrière
+}
+
+
+ion-card {
+  margin-top: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(73, 73, 73, 0.1);
+  backdrop-filter: blur(50px);
+}
+
+
+
+ion-card-title {
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #f4eeee;
+}
+
+ion-item {
+  --border-radius: 8px;
+  --background: #10131b;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  margin: 10px 0;
+}
+
+ion-input,
+ion-textarea {
+  font-size: 1rem;
+}
+
+ion-button {
+  margin-top: 15px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+ion-button[color="danger"] {
+  --background: #216fdb;
+  --background-hover: #015c98;
+  --background-activated: #2530ac;
+  --background-focused: #4f6fd9;
+}
+
+ion-button[color="danger"]:hover {
+  filter: brightness(90%);
+}
+
+ion-button ion-icon {
+  font-size: 1.4rem;
+}

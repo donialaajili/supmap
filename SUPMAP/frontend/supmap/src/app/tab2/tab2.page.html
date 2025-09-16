@@ -1,0 +1,55 @@
+<ion-app>
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-title>
+        Incident et trafic
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content [fullscreen]="true">
+    <ion-header collapse="condense">
+      <ion-toolbar>
+        <ion-title size="large">Trafic</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <div class="trafic-container">
+      <h2>Conditions de trafic en temps réel</h2>
+      <div *ngIf="traffics.length > 0; else noTraffic">
+        <ion-list>
+          <ion-item *ngFor="let traffic of traffics">
+            <ion-label>
+              <h3>{{ traffic.roadStatus }}</h3> <!-- Affichage du statut du trafic -->
+              <p>Vitesse actuelle : {{ traffic.currentSpeed }} km/h</p>
+              <p>Vitesse libre : {{ traffic.freeFlowSpeed }} km/h</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
+      <ng-template #noTraffic>
+        <p>Aucune information de trafic disponible.</p>
+      </ng-template>
+
+      <h2>Incidents signalés</h2>
+      <div *ngIf="incidents.length > 0; else noIncident">
+        <ion-list>
+          <ion-item *ngFor="let incident of incidents">
+            <ion-label>
+              <h3>{{ incident.type }}</h3> <!-- Affichage du type d'incident -->
+              <p>{{ incident.description }}</p>
+              <p>Status: {{ incident.status }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
+      <ng-template #noIncident>
+        <p>Aucun incident signalé.</p>
+      </ng-template>
+
+      <ion-button expand="block" color="secondary" (click)="refresh()">Actualiser</ion-button>
+    </div>
+  </ion-content>
+</ion-app>
+
+

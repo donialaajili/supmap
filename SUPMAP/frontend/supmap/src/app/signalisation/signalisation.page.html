@@ -1,0 +1,60 @@
+<ion-app>
+
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/apres-connexion/tab1"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Signalisation</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="ion-padding">
+    <!-- Carte interactive -->
+    <div id="map"></div>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Signaler un problème</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <form (ngSubmit)="submitReport()">
+          <ion-item>
+            <ion-label position="floating">Type de problème</ion-label>
+            <ion-select [(ngModel)]="problemType" name="problemType" required>
+              <ion-select-option value="accident">Accident</ion-select-option>
+              <ion-select-option value="danger">Danger</ion-select-option>
+              <ion-select-option value="police">Police</ion-select-option>
+              <ion-select-option value="bouchon">Embouteillage</ion-select-option>
+              <ion-select-option value="route_fermee">Route_fermee</ion-select-option>
+              <ion-select-option value="obstacle">Obstacle</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Description</ion-label>
+            <ion-textarea [(ngModel)]="description" name="description" required></ion-textarea>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Localisation</ion-label>
+            <ion-input [(ngModel)]="location" name="location" readonly></ion-input>
+          </ion-item>
+
+          <ion-button expand="block" color="medium" (click)="getCurrentLocation()">
+            <ion-icon name="locate" slot="start"></ion-icon>
+            Obtenir ma position
+          </ion-button>
+
+          <ion-button expand="block" type="submit" color="danger">Envoyer le signalement</ion-button>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </ion-content>
+
+</ion-app>
+
+
+
+
